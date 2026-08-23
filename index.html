@@ -1,0 +1,3071 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新青年·智造 — 陈文栋 · 新生见面会</title>
+    <style>
+        /* ===== 全局重置 & 深色主题变量 ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #818CF8;
+            --primary-light: #A5B4FC;
+            --primary-dark: #6366F1;
+            --accent: #34D399;
+            --accent-dark: #10B981;
+            --accent-light: #6EE7B7;
+            --bg: #0a0e1a;
+            --bg-card: rgba(10, 14, 26, 0.85);
+            --bg-soft: rgba(20, 30, 50, 0.7);
+            --bg-nav: rgba(10, 14, 26, 0.88);
+            --text: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.12);
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+            --shadow-hover: 0 12px 44px rgba(0, 0, 0, 0.8);
+            --radius: 20px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
+                "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            --slide-width: 1200px;
+            --nav-height: 60px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: #0a0e1a;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-top: var(--nav-height);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== 滚动条 ===== */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 10px;
+        }
+
+        /* ===== 导航 ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: var(--nav-height);
+            background: var(--bg-nav);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            transition: background var(--transition);
+        }
+
+        .navbar .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .nav-brand {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-brand span {
+            color: var(--primary-light);
+        }
+        .nav-brand .badge {
+            font-size: 0.6rem;
+            font-weight: 600;
+            background: rgba(0, 212, 255, 0.12);
+            color: var(--primary-light);
+            padding: 2px 10px;
+            border-radius: 40px;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            letter-spacing: 0.04em;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition);
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: var(--primary-light);
+            background: rgba(129, 140, 248, 0.1);
+        }
+        .nav-links a.active {
+            color: var(--primary-light);
+            background: rgba(129, 140, 248, 0.15);
+        }
+
+        /* 音乐控制按钮 */
+        .music-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
+            padding: 0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .music-toggle:hover {
+            background: rgba(129, 140, 248, 0.15);
+            color: var(--primary-light);
+            border-color: var(--primary-light);
+        }
+        .music-toggle.playing {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* PDF导出按钮 */
+        .print-btn {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            height: 34px;
+            padding: 0 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
+            background: rgba(255, 255, 255, 0.05);
+            white-space: nowrap;
+        }
+        .print-btn:hover {
+            background: rgba(129, 140, 248, 0.15);
+            color: var(--primary-light);
+            border-color: var(--primary-light);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 4px;
+            transition: all var(--transition);
+        }
+        .nav-toggle.active span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-toggle.active span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        @media (max-width: 820px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                background: var(--bg-nav);
+                backdrop-filter: blur(16px);
+                padding: 16px 24px 24px;
+                border-bottom: 1px solid var(--border);
+                gap: 2px;
+                box-shadow: var(--shadow);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .nav-links a {
+                padding: 10px 16px;
+                width: 100%;
+                text-align: center;
+                font-size: 0.95rem;
+            }
+            .nav-toggle {
+                display: flex;
+            }
+            .nav-brand .badge {
+                display: none;
+            }
+            .nav-controls {
+                gap: 8px;
+            }
+        }
+
+        /* ===== 主容器 ===== */
+        .app {
+            max-width: var(--slide-width);
+            margin: 0 auto;
+            padding: 24px 20px 40px;
+        }
+
+        /* ===== 全局背景粒子画布（Slide 2~10） ===== */
+        .bg-particles-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* ===== 幻灯片容器 ===== */
+        .slide {
+            position: relative;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 48px 56px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 420px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow var(--transition);
+        }
+        .slide.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .slide:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* 遮罩：半透明但不模糊，文字清晰 */
+        .slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 14, 26, 0.20);
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            z-index: 0;
+            pointer-events: none;
+            border-radius: var(--radius);
+        }
+
+        /* ===== Slide 2~10 动态渐变光影叠加层 ===== */
+        /* 在背景图之上叠加流动渐变，每张效果不同 */
+        .slide::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            border-radius: var(--radius);
+            opacity: 0.5;
+            mix-blend-mode: overlay;
+        }
+        /* Slide 2 关于我 — 对角呼吸 */
+        #slide-2::after {
+            background: linear-gradient(135deg, #1e1b4b, transparent 40%, #0d1b3e 60%, transparent);
+            background-size: 400% 400%;
+            animation: overlayDiag 8s ease-in-out infinite alternate;
+        }
+        @keyframes overlayDiag {
+            0% { background-position: 0% 0%; opacity: 0.35; }
+            100% { background-position: 100% 100%; opacity: 0.55; }
+        }
+        /* Slide 3 教育背景 — 自下而上浮起 */
+        #slide-3::after {
+            background: linear-gradient(180deg, transparent, #1a1040 40%, #2d1b69 80%, #1e1b4b);
+            background-size: 100% 300%;
+            animation: overlayRise 10s ease-in-out infinite;
+        }
+        @keyframes overlayRise {
+            0% { background-position: 0% 100%; opacity: 0.5; }
+            50% { background-position: 0% 0%; opacity: 0.35; }
+            100% { background-position: 0% 100%; opacity: 0.5; }
+        }
+        /* Slide 4 技能矩阵 — 中心辐射脉冲 */
+        #slide-4::after {
+            background: radial-gradient(circle at 50% 50%, #2d1b69, #1e1b4b 40%, transparent 70%);
+            background-size: 200% 200%;
+            animation: overlayPulse 7s ease-in-out infinite alternate;
+        }
+        @keyframes overlayPulse {
+            0% { background-size: 100% 100%; background-position: 50% 50%; opacity: 0.3; }
+            100% { background-size: 200% 200%; background-position: 50% 50%; opacity: 0.5; }
+        }
+        /* Slide 5 实践经历 — 水平流动 */
+        #slide-5::after {
+            background: linear-gradient(90deg, transparent, #1a1040 30%, #2d1b69 50%, #1e1b4b 70%, transparent);
+            background-size: 300% 100%;
+            animation: overlayFlow 14s linear infinite;
+        }
+        @keyframes overlayFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        /* Slide 6 项目经历 — 扫描线 */
+        #slide-6::after {
+            background: repeating-linear-gradient(0deg, transparent, transparent 6px, rgba(99, 102, 241, 0.08) 6px, rgba(99, 102, 241, 0.08) 7px);
+            background-size: 100% 42px;
+            animation: overlayScan 6s linear infinite;
+            opacity: 0.6;
+        }
+        @keyframes overlayScan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 42px; }
+        }
+        /* Slide 7 获奖证书 — 对角星光扫过 */
+        #slide-7::after {
+            background: linear-gradient(135deg, transparent 20%, rgba(45, 27, 105, 0.6) 45%, rgba(30, 27, 75, 0.8) 50%, rgba(45, 27, 105, 0.6) 55%, transparent 80%);
+            background-size: 300% 300%;
+            animation: overlaySweep 9s ease-in-out infinite alternate;
+        }
+        @keyframes overlaySweep {
+            0% { background-position: 0% 0%; opacity: 0.3; }
+            100% { background-position: 100% 100%; opacity: 0.55; }
+        }
+        /* Slide 8 关键数据 — 自上而下扫描 */
+        #slide-8::after {
+            background: radial-gradient(ellipse at 50% 50%, #2d1b69 0%, transparent 70%);
+            background-size: 100% 250%;
+            animation: overlayDataScan 7s ease-in-out infinite alternate;
+        }
+        @keyframes overlayDataScan {
+            0% { background-position: 50% 0%; opacity: 0.3; }
+            100% { background-position: 50% 100%; opacity: 0.5; }
+        }
+        /* Slide 9 未来展望 — 中心扩散 */
+        #slide-9::after {
+            background: radial-gradient(circle at 50% 50%, #2d1b69, #1e1b4b 50%, transparent 80%);
+            background-size: 200% 200%;
+            animation: overlayExpand 10s ease-in-out infinite alternate;
+        }
+        @keyframes overlayExpand {
+            0% { background-size: 100% 100%; background-position: 50% 50%; opacity: 0.25; }
+            100% { background-size: 200% 200%; background-position: 50% 50%; opacity: 0.5; }
+        }
+        /* Slide 10 联系我 — 涟漪呼吸 */
+        #slide-10::after {
+            background: radial-gradient(circle at 50% 50%, #1e1b4b, #2d1b69 40%, #1a1040 70%, transparent);
+            background-size: 150% 150%;
+            animation: overlayRipple 8s ease-in-out infinite;
+        }
+        @keyframes overlayRipple {
+            0%, 100% { background-size: 100% 100%; background-position: 50% 50%; opacity: 0.3; }
+            50% { background-size: 150% 150%; background-position: 50% 50%; opacity: 0.5; }
+        }
+
+        .slide>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 16px;
+            right: 24px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 2px 12px;
+            border-radius: 40px;
+            border: 1px solid var(--border);
+            z-index: 2;
+        }
+
+        /* ===== 封面 ===== */
+        .slide-cover {
+            padding: 72px 56px 56px;
+            border-color: rgba(129, 140, 248, 0.15);
+            text-align: center;
+        }
+        /* 封面动画渐变背景 */
+        .slide-cover::before {
+            background: linear-gradient(135deg,
+                rgba(15, 18, 40, 0.88) 0%,
+                rgba(30, 25, 80, 0.82) 25%,
+                rgba(20, 15, 60, 0.85) 50%,
+                rgba(25, 30, 70, 0.82) 75%,
+                rgba(15, 18, 40, 0.88) 100%
+            ) !important;
+            background-size: 400% 400% !important;
+            animation: coverGradientShift 8s ease-in-out infinite !important;
+        }
+        @keyframes coverGradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+        }
+        .slide-cover .cover-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 4px 20px;
+            border-radius: 40px;
+            border: 1px solid rgba(129, 140, 248, 0.15);
+            margin-bottom: 20px;
+        }
+        .slide-cover .cover-title {
+            font-size: 4.2rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            color: #ffffff;
+            -webkit-text-fill-color: #ffffff;
+            background: none;
+            text-shadow: 0 0 40px rgba(0, 0, 0, 0.6), 0 0 80px rgba(129, 140, 248, 0.4);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 40px rgba(0, 0, 0, 0.6), 0 0 60px rgba(129, 140, 248, 0.3); }
+            100% { text-shadow: 0 0 40px rgba(0, 0, 0, 0.6), 0 0 100px rgba(165, 180, 252, 0.5), 0 0 140px rgba(99, 102, 241, 0.3); }
+        }
+        .slide-cover .cover-sub {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            letter-spacing: 0.06em;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            display: inline-block;
+            padding: 0 16px;
+            border-radius: 12px;
+        }
+        .slide-cover .cover-name {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-top: 24px;
+            letter-spacing: 0.04em;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+        }
+        .slide-cover .cover-name span {
+            color: var(--primary-light);
+        }
+        .slide-cover .cover-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px 28px;
+            margin-top: 16px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .slide-cover .cover-meta .tag {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 2px 16px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        .slide-cover .cover-meta .highlight-badge {
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 4px 18px;
+            border-radius: 40px;
+            border: 1px solid rgba(129, 140, 248, 0.2);
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+        .slide-cover .cover-line {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-light), var(--accent));
+            border-radius: 4px;
+            margin: 20px auto 0;
+            box-shadow: 0 0 20px rgba(129, 140, 248, 0.2);
+        }
+
+        /* ===== 封面 Canvas 粒子画布 ===== */
+        .cover-canvas {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        /* 封面内容层级提升 */
+        .slide-cover .slide-number,
+        .slide-cover .cover-badge,
+        .slide-cover .cover-title,
+        .slide-cover .cover-sub,
+        .slide-cover .cover-name,
+        .slide-cover .cover-meta,
+        .slide-cover .cover-line {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== 通用组件 ===== */
+        .slide-title {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+        }
+        .slide-title .emoji {
+            font-size: 1.8rem;
+        }
+        .slide-title .accent {
+            color: var(--primary-light);
+        }
+
+        .slide-sub {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            font-weight: 400;
+            border-left: 3px solid var(--primary-light);
+            padding-left: 16px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            display: inline-block;
+            padding: 2px 16px 2px 16px;
+            border-radius: 0 8px 8px 0;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 14px;
+            padding: 20px 22px;
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        }
+        .card:hover {
+            border-color: rgba(129, 140, 248, 0.3);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            background: rgba(10, 14, 26, 0.92);
+        }
+        .card .card-icon {
+            font-size: 1.6rem;
+            margin-bottom: 6px;
+        }
+        .card .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .card .card-sub {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .card .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            line-height: 1.6;
+        }
+        .card .card-desc ul {
+            list-style: none;
+            padding: 0;
+            margin: 4px 0 0;
+        }
+        .card .card-desc li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 2px;
+            font-size: 0.88rem;
+        }
+        .card .card-desc li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        .card .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 8px;
+            margin-top: 8px;
+        }
+        .card .card-tags span {
+            background: rgba(129, 140, 248, 0.08);
+            color: var(--primary-light);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 1px 10px;
+            border-radius: 40px;
+            border: 1px solid rgba(129, 140, 248, 0.08);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 16px 12px;
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        .stat-item .stat-number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+        .stat-item .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+        }
+        .badge-list .badge {
+            background: var(--bg-card);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+        .badge-list .badge:hover {
+            border-color: var(--primary-light);
+            color: var(--primary-light);
+            box-shadow: 0 4px 12px rgba(129, 140, 248, 0.08);
+            background: rgba(10, 14, 26, 0.8);
+        }
+        .badge-list .badge .yr {
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-right: 4px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 16px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            border-radius: 8px;
+            padding-left: 12px;
+            padding-right: 12px;
+            margin-bottom: 4px;
+        }
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        .timeline-item .tl-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            width: 36px;
+            text-align: center;
+            margin-top: 2px;
+        }
+        .timeline-item .tl-content {
+            flex: 1;
+        }
+        .timeline-item .tl-title {
+            font-weight: 700;
+            color: var(--text);
+            font-size: 1rem;
+        }
+        .timeline-item .tl-org {
+            color: var(--primary-light);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .timeline-item .tl-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .timeline-item .tl-desc {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            margin-top: 2px;
+            line-height: 1.6;
+        }
+
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+            margin-top: 4px;
+        }
+        .tag-group .tag {
+            background: rgba(129, 140, 248, 0.06);
+            color: var(--primary-light);
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid rgba(129, 140, 248, 0.06);
+        }
+
+        /* ===== IoT 数据面板风格 ===== */
+        /* 卡片 — 数据面板外框 */
+        .card {
+            border: 1px solid rgba(129, 140, 248, 0.12);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 60px; height: 60px;
+            background: radial-gradient(circle at 100% 0%, rgba(129, 140, 248, 0.06), transparent 70%);
+            pointer-events: none;
+        }
+        .card:hover {
+            border-color: rgba(129, 140, 248, 0.4);
+            box-shadow: 0 0 30px rgba(129, 140, 248, 0.1), 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+        /* 卡片标题 — 带状态指示灯 */
+        .card .card-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(129, 140, 248, 0.08);
+            margin-bottom: 8px;
+        }
+        .card .card-title::before {
+            content: '';
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #34D399;
+            box-shadow: 0 0 6px #34D399;
+            flex-shrink: 0;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+        @keyframes statusPulse {
+            0%, 100% { box-shadow: 0 0 4px #34D399; }
+            50% { box-shadow: 0 0 12px #34D399, 0 0 20px rgba(52, 211, 153, 0.4); }
+        }
+        /* 卡片列表项 — 数据行 */
+        .card .card-desc li {
+            padding: 4px 0 4px 20px;
+            border-bottom: 1px solid rgba(129, 140, 248, 0.04);
+            font-family: 'SF Mono', 'Consolas', 'Courier New', monospace;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+        .card .card-desc li:last-child {
+            border-bottom: none;
+        }
+        .card .card-desc li::before {
+            content: '>';
+            color: var(--primary-light);
+            font-weight: 700;
+            left: 0;
+        }
+        /* 卡片标签 — 系统状态徽章 */
+        .card .card-tags span,
+        .tag-group .tag {
+            background: rgba(10, 14, 26, 0.8);
+            border: 1px solid rgba(129, 140, 248, 0.2);
+            color: var(--primary-light);
+            font-family: 'SF Mono', 'Consolas', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            padding: 3px 12px;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        .tag-group .tag:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 10px rgba(129, 140, 248, 0.2);
+            background: rgba(129, 140, 248, 0.1);
+        }
+        /* 徽章列表 — 系统日志条目 */
+        .badge-list .badge {
+            background: rgba(10, 14, 26, 0.7);
+            border: 1px solid rgba(129, 140, 248, 0.1);
+            border-radius: 4px;
+            font-family: 'SF Mono', 'Consolas', monospace;
+            font-size: 0.8rem;
+            padding: 5px 16px;
+            position: relative;
+        }
+        .badge-list .badge::before {
+            content: '[';
+            color: rgba(129, 140, 248, 0.3);
+            margin-right: 2px;
+        }
+        .badge-list .badge::after {
+            content: ']';
+            color: rgba(129, 140, 248, 0.3);
+            margin-left: 2px;
+        }
+        .badge-list .badge:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 16px rgba(129, 140, 248, 0.15);
+        }
+        /* 时间线 — 数据流连接线 */
+        .timeline-item {
+            position: relative;
+            border-left: 2px solid rgba(129, 140, 248, 0.15);
+            border-bottom: none;
+            padding-left: 20px;
+            margin-left: 0;
+            border-radius: 0 8px 8px 0;
+            transition: border-color 0.3s;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 18px;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            box-shadow: 0 0 8px var(--primary-light);
+        }
+        .timeline-item:hover {
+            border-left-color: var(--primary-light);
+        }
+        .timeline-item .tl-title {
+            font-family: 'SF Mono', 'Consolas', monospace;
+            font-size: 0.95rem;
+        }
+        .timeline-item .tl-org {
+            color: #5EEAD4;
+            font-family: 'SF Mono', 'Consolas', monospace;
+            font-size: 0.8rem;
+        }
+        /* 统计卡片 — 仪表盘指标 */
+        .stat-item {
+            border: 1px solid rgba(129, 140, 248, 0.1);
+            border-radius: 10px;
+            position: relative;
+        }
+        .stat-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 10%; right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+            opacity: 0.5;
+        }
+        .stat-item .stat-number {
+            font-family: 'SF Mono', 'Consolas', monospace;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+        /* 获奖高亮 — 主面板 */
+        .awards-highlight {
+            border: 1px solid rgba(129, 140, 248, 0.2);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        .awards-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent), #5EEAD4);
+            opacity: 0.6;
+        }
+        .awards-highlight .badge-list .badge {
+            background: rgba(10, 14, 26, 0.6);
+            border-color: var(--border);
+            font-size: 0.9rem;
+            padding: 6px 22px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .awards-highlight .badge-list .badge:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 4px 16px rgba(129, 140, 248, 0.12);
+            background: rgba(10, 14, 26, 0.8);
+        }
+        .awards-highlight .section-label {
+            display: inline-block;
+            font-weight: 700;
+            color: var(--primary-light);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            letter-spacing: 0.02em;
+            border-bottom: 3px solid var(--primary-light);
+            padding-bottom: 4px;
+        }
+        /* 证书轮播卡片 */
+        .carousel-slide {
+            border: 1px solid rgba(129, 140, 248, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .carousel-slide:hover {
+            border-color: rgba(129, 140, 248, 0.3);
+            box-shadow: 0 0 24px rgba(129, 140, 248, 0.1);
+        }
+        /* 幻灯片全局标题 */
+        .slide-sub {
+            border-left: 3px solid var(--primary-light);
+            box-shadow: 0 0 10px rgba(129, 140, 248, 0.15);
+        }
+
+        /* ===== 获奖与证书 重点突出 ===== */
+        .awards-highlight {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        .awards-highlight .badge-list .badge {
+            background: rgba(10, 14, 26, 0.6);
+            border-color: var(--border);
+            font-size: 0.9rem;
+            padding: 6px 22px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .awards-highlight .badge-list .badge:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 4px 16px rgba(129, 140, 248, 0.12);
+            background: rgba(10, 14, 26, 0.8);
+        }
+        .awards-highlight .section-label {
+            display: inline-block;
+            font-weight: 700;
+            color: var(--primary-light);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            letter-spacing: 0.02em;
+            border-bottom: 3px solid var(--primary-light);
+            padding-bottom: 4px;
+        }
+
+        /* ===== 证书图片轮播 ===== */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto 10px;
+            overflow: hidden;
+            border-radius: 14px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+            background: rgba(10, 14, 26, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid var(--border);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            aspect-ratio: 4 / 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 14, 26, 0.3);
+            padding: 12px;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 图片加载失败占位 */
+        .carousel-fallback {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 26, 0.6);
+            border-radius: 8px;
+            border: 2px dashed rgba(255, 255, 255, 0.15);
+            color: var(--text-muted);
+            gap: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .carousel-fallback .fallback-icon {
+            font-size: 2.5rem;
+            opacity: 0.6;
+        }
+        .carousel-fallback .fallback-text {
+            font-size: 0.8rem;
+            font-weight: 500;
+            line-height: 1.4;
+            max-width: 200px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .carousel-dots .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .carousel-dots .dot.active {
+            background: var(--primary-light);
+            transform: scale(1.2);
+            box-shadow: 0 0 12px rgba(129, 140, 248, 0.30);
+        }
+
+        .carousel-dots .dot:hover {
+            background: var(--primary-light);
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(10, 14, 26, 0.7);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            z-index: 5;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .carousel-container:hover .carousel-arrow {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .carousel-arrow:hover {
+            background: var(--bg);
+            color: var(--primary-light);
+            box-shadow: 0 4px 16px rgba(129, 140, 248, 0.15);
+        }
+
+        .carousel-arrow.prev {
+            left: 8px;
+        }
+        .carousel-arrow.next {
+            right: 8px;
+        }
+
+        .carousel-label {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        /* ===== 箴言区块 ===== */
+        .motto-block {
+            margin-top: 30px;
+            padding: 32px 24px;
+            background: rgba(10, 14, 26, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 2px solid var(--border);
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        .motto-block .motto-text {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #FBBF24;
+            letter-spacing: 0.04em;
+            text-shadow: 0 0 40px rgba(251, 191, 36, 0.25);
+            line-height: 1.3;
+        }
+        .motto-block .motto-sub {
+            font-size: 1rem;
+            color: var(--primary-light);
+            margin-top: 8px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+        }
+        @media (max-width: 600px) {
+            .motto-block .motto-text {
+                font-size: 2rem;
+            }
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 32px 32px;
+                min-height: 340px;
+            }
+            .slide-cover {
+                padding: 48px 32px 40px;
+            }
+            .slide-cover .cover-title {
+                font-size: 3.2rem;
+            }
+            .grid-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 820px) {
+            .slide {
+                padding: 28px 20px;
+                border-radius: 14px;
+                min-height: 300px;
+            }
+            .slide-cover {
+                padding: 36px 20px 32px;
+            }
+            .slide-cover .cover-title {
+                font-size: 2.4rem;
+            }
+            .slide-cover .cover-name {
+                font-size: 1.6rem;
+            }
+            .slide-cover .cover-sub {
+                font-size: 1.1rem;
+            }
+            .slide-title {
+                font-size: 1.5rem;
+            }
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .stat-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .slide-number {
+                top: 10px;
+                right: 14px;
+                font-size: 0.6rem;
+                padding: 1px 10px;
+            }
+            .timeline-item {
+                flex-direction: column;
+                gap: 4px;
+                padding: 12px 12px;
+            }
+            .timeline-item .tl-icon {
+                text-align: left;
+                width: auto;
+            }
+            .awards-highlight {
+                padding: 16px 18px;
+            }
+            .motto-block .motto-text {
+                font-size: 2rem;
+            }
+            .motto-block {
+                padding: 24px 18px;
+            }
+            /* Slide 9 二维码移动端紧凑 */
+            .slide-qr-img {
+                width: 120px !important;
+                height: 120px !important;
+            }
+            .slide-qr-wrap {
+                padding: 14px 18px !important;
+            }
+            .carousel-container {
+                max-width: 100%;
+            }
+            .carousel-arrow {
+                opacity: 0.6 !important;
+                pointer-events: auto !important;
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide-cover .cover-title {
+                font-size: 1.8rem;
+            }
+            .slide-cover .cover-name {
+                font-size: 1.3rem;
+            }
+            .slide-cover .cover-meta {
+                font-size: 0.8rem;
+                gap: 8px 16px;
+            }
+            .slide-title {
+                font-size: 1.2rem;
+            }
+            .stat-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .stat-item .stat-number {
+                font-size: 1.6rem;
+            }
+            .card {
+                padding: 16px 18px;
+            }
+            .card .card-title {
+                font-size: 0.95rem;
+            }
+            .card .card-desc li {
+                font-size: 0.82rem;
+            }
+            .app {
+                padding: 12px 10px 30px;
+            }
+            .motto-block .motto-text {
+                font-size: 1.6rem;
+            }
+            .motto-block {
+                padding: 20px 14px;
+            }
+            .slide-qr-img {
+                width: 100px !important;
+                height: 100px !important;
+            }
+            .slide-qr-wrap {
+                padding: 12px 14px !important;
+            }
+            .carousel-slide {
+                aspect-ratio: 3 / 4;
+            }
+            .slide-cover .cover-meta .highlight-badge {
+                font-size: 0.8rem;
+                padding: 3px 12px;
+            }
+        }
+
+        /* ===== 移动端底部导航 ===== */
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(10, 14, 26, 0.92);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-top: 1px solid var(--border);
+            padding: 6px 0;
+            padding-bottom: max(6px, env(safe-area-inset-bottom));
+            justify-content: space-around;
+            align-items: center;
+        }
+        .bottom-nav .bn-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            padding: 6px 10px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.65rem;
+            font-weight: 500;
+            transition: all var(--transition);
+            min-width: 52px;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .bottom-nav .bn-item .bn-icon {
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+        .bottom-nav .bn-item.active {
+            color: var(--primary-light);
+        }
+        .bottom-nav .bn-item:active {
+            background: rgba(129, 140, 248, 0.12);
+            transform: scale(0.95);
+        }
+
+        /* 移动端模式全局调整 */
+        body.is-mobile {
+            padding-bottom: 80px;
+        }
+        body.is-mobile .bottom-nav {
+            display: flex;
+        }
+        body.is-mobile .back-top {
+            bottom: 90px;
+        }
+        body.is-mobile .carousel-arrow {
+            opacity: 0.7 !important;
+            pointer-events: auto !important;
+            width: 32px;
+            height: 32px;
+            font-size: 1rem;
+        }
+        body.is-mobile .slide {
+            min-height: 280px;
+        }
+        body.is-mobile .card {
+            padding: 16px 18px;
+        }
+        body.is-mobile .nav-links {
+            font-size: 0.85rem;
+        }
+        @media (max-width: 480px) {
+            body.is-mobile .bottom-nav .bn-item {
+                font-size: 0.6rem;
+                padding: 4px 6px;
+                min-width: 44px;
+            }
+            body.is-mobile .bottom-nav .bn-item .bn-icon {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* ===== 打印 ===== */
+        @media print {
+            .navbar,
+            .bottom-nav {
+                display: none !important;
+            }
+            body {
+                padding-top: 0 !important;
+                background: #fff !important;
+            }
+            .app {
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+            .slide {
+                break-inside: avoid;
+                page-break-after: always;
+                border: 1px solid #ddd !important;
+                background: #fff !important;
+                box-shadow: none !important;
+                padding: 32px 40px !important;
+                margin-bottom: 0 !important;
+                border-radius: 0 !important;
+                color: #111 !important;
+                background-image: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .slide::before {
+                display: none !important;
+            }
+            .slide-cover {
+                background: #f8f9fc !important;
+            }
+            .slide-cover .cover-title {
+                color: #000 !important;
+                -webkit-text-fill-color: #000 !important;
+                background: none !important;
+            }
+            .cover-canvas,
+            .bg-particles-canvas {
+                display: none !important;
+            }
+            .awards-highlight {
+                background: #f8f9fc !important;
+                border: 2px solid #4F46E5 !important;
+            }
+            .motto-block {
+                background: #fef9e7 !important;
+                border-color: #fbbf24 !important;
+            }
+            .motto-block .motto-text {
+                color: #b45309 !important;
+                text-shadow: none !important;
+            }
+            .badge-list .badge {
+                background: #f8f9fc !important;
+            }
+            .card {
+                background: #f8f9fc !important;
+            }
+            .stat-item {
+                background: #f8f9fc !important;
+            }
+            .slide-sub {
+                background: transparent !important;
+            }
+            .timeline-item {
+                background: #f8f9fc !important;
+            }
+            .carousel-arrow {
+                display: none !important;
+            }
+            .carousel-dots {
+                display: none !important;
+            }
+            .carousel-slide {
+                aspect-ratio: 4 / 3;
+            }
+            .carousel-container {
+                background: #f8f9fc !important;
+                box-shadow: none !important;
+            }
+            .slide-cover .cover-meta .highlight-badge {
+                background: #f8f9fc !important;
+                border: 1px solid #ddd !important;
+            }
+        }
+
+        /* ===== 返回顶部 ===== */
+        .back-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 20px rgba(129, 140, 248, 0.25);
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all var(--transition);
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-top.visible {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+        .back-top:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        @media print {
+            .print-btn,
+            .music-toggle,
+            .nav-toggle,
+            .back-top,
+            .carousel-arrow,
+            .carousel-dots {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== 隐藏的音频播放器 ===== -->
+    <audio id="bgMusic" loop preload="auto" style="display:none;">
+        <source src="1.m4a" type="audio/mp4">
+        <source src="1.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放。
+    </audio>
+
+    <!-- ===== 导航 ===== -->
+    <nav class="navbar" role="navigation" aria-label="主导航">
+        <div class="container">
+            <a href="#" class="nav-brand">
+                <span>✦</span> 新青年·智造
+                <span class="badge">新生见面会</span>
+            </a>
+            <div class="nav-controls">
+                <ul class="nav-links" id="navLinks" role="menubar">
+                    <li role="none"><a href="#slide-1" role="menuitem">封面</a></li>
+                    <li role="none"><a href="#slide-2" role="menuitem">简介</a></li>
+                    <li role="none"><a href="#slide-3" role="menuitem">教育</a></li>
+                    <li role="none"><a href="#slide-4" role="menuitem">技能</a></li>
+                    <li role="none"><a href="#slide-5" role="menuitem">实践</a></li>
+                    <li role="none"><a href="#slide-6" role="menuitem">项目</a></li>
+                    <li role="none"><a href="#slide-7" role="menuitem">荣誉</a></li>
+                    <li role="none"><a href="#slide-8" role="menuitem">数据</a></li>
+                    <li role="none"><a href="#slide-9" role="menuitem">展望</a></li>
+                    <li role="none"><a href="#slide-10" role="menuitem">联系</a></li>
+                </ul>
+                <button class="print-btn" id="printBtn" aria-label="导出PDF" title="导出PDF">
+                    <span>🖨️</span> 导出PDF
+                </button>
+                <button class="music-toggle" id="musicToggle" aria-label="切换背景音乐" title="背景音乐">
+                    <span id="musicIcon">🔊</span>
+                </button>
+                <button class="nav-toggle" id="navToggle" aria-label="切换导航" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== 主容器 ===== -->
+    <div class="app">
+        <canvas class="bg-particles-canvas" id="bgParticlesCanvas"></canvas>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 1 — 封面 (data-bg="1.jpg")                              -->
+        <!-- ============================================================ -->
+        <section class="slide slide-cover visible" id="slide-1" data-bg="1.jpg">
+            <canvas class="cover-canvas" id="coverCanvas"></canvas>
+            <span class="slide-number">01 / 10</span>
+            <div class="cover-badge">✦ 2026 · 新生见面会</div>
+            <h1 class="cover-title">新青年·智造</h1>
+            <p class="cover-sub">用代码书写青春 · 以创新定义未来</p>
+            <div class="cover-name">陈文栋 <span>·</span> 物联网工程</div>
+            <div class="cover-meta">
+                <span class="highlight-badge">🏫 德州学院 · 大一新生</span>
+                <span class="highlight-badge">📞 19558788964</span>
+                <span class="tag">🇨🇳 共青团员</span>
+                <span class="tag">🤖 达摩院 AI 训练师</span>
+                <span class="tag">🎤 主持 · 演讲</span>
+            </div>
+            <div class="cover-line"></div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 2 — 个人简介 (data-bg="2.jpg")                         -->
+        <!-- ============================================================ -->
+        <section class="slide" id="slide-2" data-bg="2.jpg">
+            <span class="slide-number">02 / 10</span>
+            <h2 class="slide-title"><span class="emoji">👤</span> 关于我 <span class="accent">·</span> 新青年</h2>
+            <div class="slide-sub">共青团员 · 物联网工程大一新生 · 热爱技术与创新</div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <div class="card-title">身份标签</div>
+                    <div class="card-desc">
+                        <ul>
+                            <li>优秀共青团员</li>
+                            <li>物联网工程 · 大一新生</li>
+                            <li>达摩院 AI 训练师（初级 / 高级）</li>
+                            <li>口才主持 · 演讲赛事获奖</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <div class="card-title">核心能力</div>
+                    <div class="card-desc">
+                        <ul>
+                            <li>扎实数理基础 · 编程能力</li>
+                            <li>机器学习 · 数据分析 · 实验研究</li>
+                            <li>团队协作 · 项目推进</li>
+                            <li>口才表达 · 舞台表现力</li>
+                        </ul>
+                    </div>
+                    <div class="tag-group" style="margin-top:10px;">
+                        <span class="tag">Python</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">机器学习</span>
+                        <span class="tag">数据分析</span>
+                        <span class="tag">TOEFL 105</span>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:16px; padding:14px 20px; background:rgba(0,0,0,0.6); backdrop-filter:blur(8px); border-radius:12px; border-left:4px solid var(--primary-light);">
+                <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.7;">
+                    “作为一名优秀的共青团员，我具备扎实的数理基础与编程能力，在机器学习、数据分析
+                    和实验研究方面有丰富实践。善于团队协作与项目推进，兼具口才主持功底，多次在演讲与
+                    主持赛事中斩获佳绩。”
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 3 — 教育背景 (data-bg="3.jpg")                         -->
+        <!-- ============================================================ -->
+        <section class="slide" id="slide-3" data-bg="3.jpg">
+            <span class="slide-number">03 / 10</span>
+            <h2 class="slide-title"><span class="emoji">📚</span> 教育背景 <span class="accent">·</span> 成长之路</h2>
+            <div class="slide-sub">从莒县一中到德州学院，一路向前</div>
+
+            <div class="timeline-item">
+                <div class="tl-icon">🏫</div>
+                <div class="tl-content">
+                    <div class="tl-title">德州学院 <span class="tl-org">· 物联网工程</span></div>
+                    <div class="tl-date">2026.09 – 2030.06 · 大一新生</div>
+                    <div class="tl-desc">高考总分 491 分 · 开启智能物联新征程</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="tl-icon">📖</div>
+                <div class="tl-content">
+                    <div class="tl-title">莒县第一中学 <span class="tl-org">· 理科实验班</span></div>
+                    <div class="tl-date">2023.09 – 2026.06</div>
+                    <div class="tl-desc">
+                        连续三年校级三好学生 · 综合排名年级前 10%
+                        <span style="display:inline-block; margin-left:8px; background:rgba(129,140,248,0.15); padding:0 12px; border-radius:40px; font-size:0.7rem; color:var(--primary-light);">优秀毕业生</span>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:12px;">
+                <span style="background:rgba(0,0,0,0.5); backdrop-filter:blur(4px); padding:4px 18px; border-radius:40px; border:1px solid var(--border); font-size:0.8rem; color:var(--text-secondary);">📈 班级平均分提升 12%</span>
+                <span style="background:rgba(0,0,0,0.5); backdrop-filter:blur(4px); padding:4px 18px; border-radius:40px; border:1px solid var(--border); font-size:0.8rem; color:var(--text-secondary);">🧪 化学均分提升 8 分</span>
+                <span style="background:rgba(0,0,0,0.5); backdrop-filter:blur(4px); padding:4px 18px; border-radius:40px; border:1px solid var(--border); font-size:0.8rem; color:var(--text-secondary);">🏅 年级排名 第2 → 第1</span>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 4 — 技能矩阵 (data-bg="4.jpg")                         -->
+        <!-- ============================================================ -->
+        <section class="slide" id="slide-4" data-bg="4.jpg">
+            <span class="slide-number">04 / 10</span>
+            <h2 class="slide-title"><span class="emoji">⚡</span> 技能矩阵 <span class="accent">·</span> 多维能力</h2>
+            <div class="slide-sub">编程 · AI · 实验 · 语言 · 主持</div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">💻</div>
+                    <div class="card-title">编程语言</div>
+                    <div class="card-desc">
+                        <ul>
+                            <li>Python（基础）</li>
+                            <li>C++（入门）</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🤖</div>
+                    <div class="card-title">AI / 数据</div>
+                    <div class="card-desc">
+                        <ul>
+                            <li>PyTorch · TensorFlow</li>
+                            <li>机器学习基础</li>
+                            <li>Pandas · Matplotlib</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔬</div>
+                    <div class="card-title">实验技能</div>
+                    <div class="card-desc">
+                        <ul>
+                            <li>实验设计 · 数据采集</li>
+                            <li>示波器 · 显微镜</li>
+                            <li>误差分析</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌐</div>
+                    <div class="card-title">语言 · 工具</div>
+                    <div class="card-desc">
+                        <ul>
+                            <li>TOEFL 105</li>
+                            <li>Office 三件套</li>
+                            <li>LaTeX · Notion</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎤</div>
+                    <div class="card-title">口才 · 主持</div>
+                    <div class="card-desc">
+                        <ul>
+                            <li>播音主持 · 演讲表达</li>
+                            <li>活动策划 · 舞台表现力</li>
+                            <li>即兴应变</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 5 — 实践经历 (data-bg="1.jpg")                         -->
+        <!-- ============================================================ -->
+        <section class="slide" id="slide-5" data-bg="1.jpg">
+            <span class="slide-number">05 / 10</span>
+            <h2 class="slide-title"><span class="emoji">🚀</span> 实践经历 <span class="accent">·</span> 行动力</h2>
+            <div class="slide-sub">学生工作 · 社团活动 · 领导力</div>
+
+            <div class="timeline-item">
+                <div class="tl-icon">👑</div>
+                <div class="tl-content">
+                    <div class="tl-title">班长 <span class="tl-org">· 峤山镇初级中学 九年级9班</span></div>
+                    <div class="tl-date">2022 – 2023</div>
+                    <div class="tl-desc">
+                        主导班级日常管理与团队建设，统筹协调 7 名班委分工，组织活动 20+ 场；
+                        建立“学习互助小组”，班级平均分提升 12%，年级排名从第 8 升至第 2；
+                        收集反馈教学建议 50+ 条，推动 3 项教学调整落地。
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="tl-icon">🧪</div>
+                <div class="tl-content">
+                    <div class="tl-title">化学课代表 <span class="tl-org">· 莒县第一中学 高二（10）班</span></div>
+                    <div class="tl-date">2024 – 2025</div>
+                    <div class="tl-desc">
+                        负责作业收发与疑难整理，建立"高频错题库"；课余答疑 100+ 人次，
+                        班级化学平均分提升 8 分，年级排名从第 5 升至第 1。
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="tl-icon">🤖</div>
+                <div class="tl-content">
+                    <div class="tl-title">AI 兴趣小组 发起人 / 组长 <span class="tl-org">· 校内科创社团</span></div>
+                    <div class="tl-date">2025.03 – 2026.06</div>
+                    <div class="tl-desc">
+                        发起并组建 12 人 AI 学习小组，成员留存率 92%；完成 MNIST 和猫狗分类
+                        项目，准确率分别达 97.2% 和 89.5%；策划校内 AI 科普讲座 2 场，
+                        覆盖师生 300+ 人，获校刊专题报道。
+                    </div>
+                </div>
+            </div>
+            <!-- ===== 新增：元旦晚会 ===== -->
+            <div class="timeline-item">
+                <div class="tl-icon">🎭</div>
+                <div class="tl-content">
+                    <div class="tl-title">元旦晚会总策划 & 主演 <span class="tl-org">· 高二（3）班</span></div>
+                    <div class="tl-date">2024.12 – 2025.01</div>
+                    <div class="tl-desc">
+                        独立策划并导演班级元旦晚会，统筹节目编排、舞台布置及后勤保障，协调 20+ 名同学分工合作；
+                        亲自参演小品，凭借生动表演赢得全场学生热烈反响与喜爱；
+                        出色领导力与组织能力得到班主任及年级组老师高度认可与赞赏。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 6 — 项目经历 (data-bg="2.jpg")                         -->
+        <!-- ============================================================ -->
+        <section class="slide" id="slide-6" data-bg="2.jpg">
+            <span class="slide-number">06 / 10</span>
+            <h2 class="slide-title"><span class="emoji">💡</span> 项目经历 <span class="accent">·</span> 从想法到落地</h2>
+            <div class="slide-sub">AI · 运动分析 · 工程实践</div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">♻️</div>
+                    <div class="card-title">智能垃圾分类助手</div>
+                    <div class="card-sub">MobileNetV2 · 迁移学习 · Flask</div>
+                    <div class="card-desc">
+                        <ul>
+                            <li>4 类生活垃圾自动识别，准确率 <strong style="color:var(--accent);">91.3%</strong></li>
+                            <li>手动标注 800+ 图片，数据增强至 2,400 张</li>
+                            <li>Flask Web Demo，GitHub 70+ star</li>
+                        </ul>
+                    </div>
+                    <div class="card-tags">
+                        <span>PyTorch</span>
+                        <span>迁移学习</span>
+                        <span>Flask</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🏓</div>
+                    <div class="card-title">运动姿态分析</div>
+                    <div class="card-sub">MediaPipe · Python · 数据分析</div>
+                    <div class="card-desc">
+                        <ul>
+                            <li>乒乓球正手攻球姿态提取与角度分析</li>
+                            <li>对比职业 vs 业余，肘部角度偏差均值 <strong style="color:var(--accent);">22.5°</strong></li>
+                            <li>校级科创大赛一等奖，市级青少年科创展</li>
+                        </ul>
+                    </div>
+                    <div class="card-tags">
+                        <span>MediaPipe</span>
+                        <span>姿态估计</span>
+                        <span>数据分析</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <div class="card-title">等离子炮制作</div>
+                    <div class="card-sub">自学 · 高压物理 · 工程实践</div>
+                    <div class="card-desc">
+                        <ul>
+                            <li>通过自学高压物理、脉冲功率技术，独立设计并成功制作小型等离子炮</li>
+                            <li>完成电容储能模块、高压放电开关和等离子体发生器的组装与调试</li>
+                            <li>实现稳定等离子体射流，实验数据验证了设计参数的有效性</li>
+                        </ul>
+                    </div>
+                    <div class="card-tags">
+                        <span>高压物理</span>
+                        <span>电子工程</span>
+                        <span>等离子体</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 7 — 获奖与证书 (data-bg="3.jpg")  含图片轮播          -->
+        <!-- ============================================================ -->
+        <section class="slide slide-awards" id="slide-7" data-bg="3.jpg">
+            <span class="slide-number">07 / 10</span>
+            <h2 class="slide-title"><span class="emoji">🏆</span> 获奖与证书 <span class="accent">·</span> 见证成长</h2>
+            <div class="slide-sub">专业认证 · 主持演讲 · 校运会 · 足球 · 体育 · 语言</div>
+
+            <!-- 文本荣誉列表 -->
+            <div class="awards-highlight">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                    <span style="font-size: 2rem;">🏅</span>
+                    <span class="section-label">荣誉墙 · 高光时刻</span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px;">
+                    <div>
+                        <div style="font-weight: 600; color: var(--primary-light); margin-bottom: 6px;">🤖 专业认证</div>
+                        <div class="badge-list" style="margin-bottom: 16px;">
+                            <span class="badge"><span class="yr">2026</span> 达摩院 AI 训练师（初级）</span>
+                            <span class="badge"><span class="yr">2026</span> 达摩院 AI 训练师（高级）</span>
+                            <span class="badge"><span class="yr">2025</span> 机器人技术等级考试（三级）</span>
+                        </div>
+                        <div style="font-weight: 600; color: var(--primary-light); margin-bottom: 6px;">🎤 主持 · 演讲</div>
+                        <div class="badge-list" style="margin-bottom: 16px;">
+                            <span class="badge"><span class="yr">2025</span> “青春山东”主持人大赛 · 晋级北京</span>
+                            <span class="badge"><span class="yr">2025</span> 校级演讲比赛 一等奖</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; color: var(--primary-light); margin-bottom: 6px;">🏅 综合荣誉</div>
+                        <div class="badge-list" style="margin-bottom: 16px;">
+                            <span class="badge"><span class="yr">2024–2026</span> 校级“三好学生”（多次）</span>
+                            <span class="badge"><span class="yr">2025</span> 校级“优秀共青团员”</span>
+                            <span class="badge"><span class="yr">2024–2025</span> 校级“优秀学生干部”（连续两年）</span>
+                        </div>
+                        <div style="font-weight: 600; color: var(--primary-light); margin-bottom: 6px;">🏃 校运动会 · 足球</div>
+                        <div class="badge-list" style="margin-bottom: 16px;">
+                            <span class="badge"><span class="yr">2024–2025</span> 连续两届校运会班级团体总冠军</span>
+                            <span class="badge"><span class="yr">2025</span> 第一届足球“校长杯”总冠军</span>
+                        </div>
+                        <div style="font-weight: 600; color: var(--primary-light); margin-bottom: 6px;">🏓 体育 · 语言</div>
+                        <div class="badge-list">
+                            <span class="badge"><span class="yr">2024–2025</span> 校运会乒乓球男单冠军（两连冠）</span>
+                            <span class="badge"><span class="yr">2026</span> TOEFL iBT 105 分</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 证书图片轮播 ===== -->
+            <div style="margin-top: 20px;">
+                <div style="text-align: center; font-weight: 600; color: var(--primary-light); font-size: 1rem; margin-bottom: 14px; letter-spacing: 0.04em;">
+                    📸 证书实拍 · 滑动查看
+                </div>
+                <div class="carousel-container" id="certCarousel">
+                    <div class="carousel-track" id="certTrack">
+                        <div class="carousel-slide"><img src="11.jpg" alt="达摩院人工智能训练师初级证书" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="13.jpg" alt="达摩院人工智能训练师高级证书" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="6.jpg" alt="青春中国主持人大赛北京决赛入场券" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="9.jpg" alt="校级三好学生荣誉证书" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="7.jpg" alt="青春中国朗读大赛获奖证书" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="12.jpg" alt="达摩院人工智能证书（高级）" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="10.jpg" alt="达摩院人工智能证书（初级）" loading="lazy"></div>
+                    </div>
+                    <button class="carousel-arrow prev" id="certPrev" aria-label="上一张">‹</button>
+                    <button class="carousel-arrow next" id="certNext" aria-label="下一张">›</button>
+                </div>
+                <div class="carousel-dots" id="certDots"></div>
+                <div class="carousel-label">✦ 每张展示 1.5 秒，自动轮播 ✦</div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 8 — 个人亮点数据 (data-bg="4.jpg")                     -->
+        <!-- ============================================================ -->
+        <section class="slide" id="slide-8" data-bg="4.jpg">
+            <span class="slide-number">08 / 10</span>
+            <h2 class="slide-title"><span class="emoji">📊</span> 关键数据 <span class="accent">·</span> 用成果说话</h2>
+            <div class="slide-sub">5 个数字，见证我的成长轨迹</div>
+
+            <div class="stat-grid" id="statGrid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="12">0%</div>
+                    <div class="stat-label">班级平均分提升 · 年级第 2</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="8">0分</div>
+                    <div class="stat-label">化学均分提升 · 年级第 1</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="92">0%</div>
+                    <div class="stat-label">AI 小组留存率 · 12 人团队</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="91.3">0%</div>
+                    <div class="stat-label">垃圾分类模型准确率</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="92.3">0%</div>
+                    <div class="stat-label">果胶酶实验透光率</div>
+                </div>
+            </div>
+
+            <div style="margin-top:24px; padding:16px 20px; background:rgba(0,0,0,0.6); backdrop-filter:blur(8px); border-radius:12px; border:1px solid var(--border); text-align:center;">
+                <span style="color:var(--text-secondary); font-size:0.9rem;">
+                    ✦ 每一个数字背后，都是对极致的追求 ✦
+                </span>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 9 — 未来展望 + 箴言 (data-bg="1.jpg")                  -->
+        <!-- ============================================================ -->
+        <section class="slide" id="slide-9" data-bg="1.jpg">
+            <span class="slide-number">09 / 10</span>
+            <h2 class="slide-title"><span class="emoji">🌟</span> 未来展望 <span class="accent">·</span> 新青年 · 新篇章</h2>
+            <div class="slide-sub">物联网工程 · 大一 · 无限可能</div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <div class="card-title">大学目标</div>
+                    <div class="card-desc">
+                        <ul>
+                            <li>深耕物联网与 AI 交叉领域</li>
+                            <li>参与科研项目与学科竞赛</li>
+                            <li>持续提升编程与算法能力</li>
+                            <li>拓展国际视野 · 语言进阶</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🤝</div>
+                    <div class="card-title">期待与你</div>
+                    <div class="card-desc">
+                        <ul>
+                            <li>在实验室里并肩探索</li>
+                            <li>在社团活动中碰撞创意</li>
+                            <li>在赛场上共同拼搏</li>
+                            <li>在青春里彼此照亮</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 个人箴言 ===== -->
+            <div class="motto-block">
+                <div class="motto-text">“没有结果的日子叫扎根”</div>
+                <div class="motto-sub">—— 陈文栋 · 自勉</div>
+            </div>
+
+            <div style="margin-top:20px; text-align:center; padding:16px 20px; background:rgba(0,0,0,0.6); backdrop-filter:blur(8px); border-radius:12px; border:1px solid var(--border);">
+                <p style="color:var(--text-secondary); font-size:0.9rem;">
+                    德州学院 · 物联网工程 · 陈文栋 · 2026
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 10 — 联系方式 (data-bg="2.jpg")                        -->
+        <!-- ============================================================ -->
+        <section class="slide" id="slide-10" data-bg="2.jpg">
+            <span class="slide-number">10 / 10</span>
+            <h2 class="slide-title"><span class="emoji">📱</span> 联系我 <span class="accent">·</span> 期待相识</h2>
+            <div class="slide-sub">扫码添加微信，一起交流成长</div>
+
+            <div style="display:flex; align-items:center; justify-content:center; gap:40px; flex-wrap:wrap; padding:20px 0;">
+                <!-- 二维码 -->
+                <div style="text-align:center; background:rgba(0,0,0,0.5); backdrop-filter:blur(12px); border-radius:20px; padding:28px 32px; border:1px solid var(--border);">
+                    <p style="color:var(--primary-light); font-size:1rem; font-weight:700; margin-bottom:16px; letter-spacing:0.04em;">📱 扫码添加微信</p>
+                    <img src="20.jpg" alt="微信二维码" style="width:200px; height:200px; border-radius:14px; border:2px solid var(--border); box-shadow:0 4px 20px rgba(0,0,0,0.5);" loading="lazy">
+                    <p style="color:var(--text-muted); font-size:0.8rem; margin-top:12px;">期待与你相识</p>
+                </div>
+
+                <!-- 联系方式 -->
+                <div style="background:rgba(0,0,0,0.5); backdrop-filter:blur(12px); border-radius:20px; padding:28px 32px; border:1px solid var(--border); min-width:200px;">
+                    <p style="color:var(--primary-light); font-size:1rem; font-weight:700; margin-bottom:16px; letter-spacing:0.04em;">📋 联系方式</p>
+                    <div style="display:flex; flex-direction:column; gap:12px; color:var(--text-secondary); font-size:0.9rem;">
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <span style="font-size:1.2rem;">📞</span>
+                            <span>19558788964</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <span style="font-size:1.2rem;">🏫</span>
+                            <span>德州学院 · 物联网工程</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <span style="font-size:1.2rem;">🎓</span>
+                            <span>2026 级大一新生</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                @media (max-width: 600px) {
+                    #slide-10 img { width: 160px !important; height: 160px !important; }
+                }
+            </style>
+        </section>
+
+    </div>
+    <!-- end .app -->
+
+    <!-- ===== 返回顶部 ===== -->
+    <button class="back-top" id="backTop" aria-label="返回顶部" title="返回顶部">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 15-6-6-6 6"/>
+        </svg>
+    </button>
+
+    <!-- ===== 移动端底部导航 ===== -->
+    <nav class="bottom-nav" id="bottomNav" role="navigation" aria-label="移动端导航">
+        <a href="#slide-1" class="bn-item active" data-target="slide-1">
+            <span class="bn-icon">🏠</span>
+            <span>首页</span>
+        </a>
+        <a href="#slide-2" class="bn-item" data-target="slide-2">
+            <span class="bn-icon">👤</span>
+            <span>简介</span>
+        </a>
+        <a href="#slide-4" class="bn-item" data-target="slide-4">
+            <span class="bn-icon">⚡</span>
+            <span>能力</span>
+        </a>
+        <a href="#slide-6" class="bn-item" data-target="slide-6">
+            <span class="bn-icon">💡</span>
+            <span>项目</span>
+        </a>
+        <a href="#slide-7" class="bn-item" data-target="slide-7">
+            <span class="bn-icon">🏆</span>
+            <span>荣誉</span>
+        </a>
+        <a href="#slide-10" class="bn-item" data-target="slide-10">
+            <span class="bn-icon">📱</span>
+            <span>联系</span>
+        </a>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ==========================================
+            // 0. 设备检测 —— 移动端模式切换
+            // ==========================================
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            const isSmallScreen = window.innerWidth <= 820;
+
+            function detectDevice() {
+                if (isTouchDevice || isSmallScreen) {
+                    document.body.classList.add('is-mobile');
+                }
+            }
+            detectDevice();
+
+            // ==========================================
+            // 0.1 封面 —— Canvas 粒子系统（高亮大号版）
+            // ==========================================
+            (function initCoverParticles() {
+                var canvas = document.getElementById('coverCanvas');
+                if (!canvas) return;
+                var ctx = canvas.getContext('2d');
+                var w, h, globalTime = 0;
+                var particles = [];
+                var mouse = { x: -999, y: -999, tx: -999, ty: -999 };
+
+                var COLORS = [
+                    { r: 129, g: 140, b: 248 },
+                    { r: 165, g: 180, b: 252 },
+                    { r: 99,  g: 102, b: 241 },
+                    { r: 255, g: 255, b: 255 },
+                    { r: 167, g: 139, b: 250 },
+                    { r: 56,  g: 189, b: 248 },
+                    { r: 192, g: 132, b: 252 },
+                    { r: 94,  g: 234, b: 212 },
+                ];
+
+                function resize() {
+                    var cover = canvas.parentElement;
+                    w = cover.offsetWidth;
+                    h = cover.offsetHeight;
+                    canvas.width = w;
+                    canvas.height = h;
+                    initParticles();
+                }
+                resize();
+                window.addEventListener('resize', resize);
+
+                canvas.parentElement.addEventListener('mousemove', function(e) {
+                    var rect = canvas.getBoundingClientRect();
+                    mouse.tx = e.clientX - rect.left;
+                    mouse.ty = e.clientY - rect.top;
+                });
+                canvas.parentElement.addEventListener('mouseleave', function() {
+                    mouse.tx = -999;
+                    mouse.ty = -999;
+                });
+                canvas.parentElement.addEventListener('touchmove', function(e) {
+                    var rect = canvas.getBoundingClientRect();
+                    mouse.tx = e.touches[0].clientX - rect.left;
+                    mouse.ty = e.touches[0].clientY - rect.top;
+                }, { passive: true });
+                canvas.parentElement.addEventListener('touchend', function() {
+                    mouse.tx = -999;
+                    mouse.ty = -999;
+                });
+
+                function initParticles() {
+                    var count = Math.max(80, Math.floor((w * h) / 5000));
+                    particles = [];
+                    for (var i = 0; i < count; i++) {
+                        var c = COLORS[Math.floor(Math.random() * COLORS.length)];
+                        particles.push({
+                            x: Math.random() * w,
+                            y: Math.random() * h,
+                            baseX: Math.random() * w,
+                            baseY: Math.random() * h,
+                            px: Math.random() * w,
+                            py: Math.random() * h,
+                            r: c.r, g: c.g, b: c.b,
+                            tr: c.r, tg: c.g, tb: c.b,
+                            size: Math.random() * 5 + 3,
+                            alpha: Math.random() * 0.4 + 0.5,
+                            vx: (Math.random() - 0.5) * 0.3,
+                            vy: (Math.random() - 0.5) * 0.3 - 0.1,
+                            phase: Math.random() * Math.PI * 2,
+                            speed: Math.random() * 0.012 + 0.004,
+                            amplitude: Math.random() * 25 + 8,
+                            twinkleSpeed: Math.random() * 0.025 + 0.008,
+                            colorTimer: Math.random() * 200,
+                            colorInterval: Math.random() * 300 + 200
+                        });
+                    }
+                }
+
+                function lerpColor(p) {
+                    p.r += (p.tr - p.r) * 0.02;
+                    p.g += (p.tg - p.g) * 0.02;
+                    p.b += (p.tb - p.b) * 0.02;
+                    p.colorTimer++;
+                    if (p.colorTimer > p.colorInterval) {
+                        p.colorTimer = 0;
+                        var nc = COLORS[Math.floor(Math.random() * COLORS.length)];
+                        p.tr = nc.r; p.tg = nc.g; p.tb = nc.b;
+                    }
+                }
+
+                function draw() {
+                    ctx.clearRect(0, 0, w, h);
+                    globalTime++;
+
+                    mouse.x += (mouse.tx - mouse.x) * 0.08;
+                    mouse.y += (mouse.ty - mouse.y) * 0.08;
+
+                    // 鼠标光晕（大范围高亮）
+                    if (mouse.x > -500 && mouse.x < w + 500) {
+                        var mg = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 250);
+                        mg.addColorStop(0, 'rgba(165, 180, 252, 0.15)');
+                        mg.addColorStop(0.3, 'rgba(129, 140, 248, 0.08)');
+                        mg.addColorStop(0.6, 'rgba(99, 102, 241, 0.03)');
+                        mg.addColorStop(1, 'rgba(99, 102, 241, 0)');
+                        ctx.beginPath();
+                        ctx.arc(mouse.x, mouse.y, 250, 0, Math.PI * 2);
+                        ctx.fillStyle = mg;
+                        ctx.fill();
+                    }
+
+                    // 更新位置
+                    for (var i = 0; i < particles.length; i++) {
+                        var p = particles[i];
+                        p.px = p.x;
+                        p.py = p.y;
+                        p.phase += p.speed;
+                        p.x = p.baseX + Math.sin(p.phase) * p.amplitude + p.vx * 60;
+                        p.y = p.baseY + Math.cos(p.phase * 0.7) * p.amplitude * 0.6 + p.vy * 60;
+                        if (p.x < -30) p.x = w + 30;
+                        if (p.x > w + 30) p.x = -30;
+                        if (p.y < -30) p.y = h + 30;
+                        if (p.y > h + 30) p.y = -30;
+
+                        var dx = p.x - mouse.x;
+                        var dy = p.y - mouse.y;
+                        var dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 150) {
+                            var force = (1 - dist / 150) * 2.5;
+                            p.x += (dx / dist) * force;
+                            p.y += (dy / dist) * force;
+                        }
+                        lerpColor(p);
+                    }
+
+                    // 连线（粗+亮）
+                    for (var i = 0; i < particles.length; i++) {
+                        for (var j = i + 1; j < particles.length; j++) {
+                            var dx = particles[i].x - particles[j].x;
+                            var dy = particles[i].y - particles[j].y;
+                            var dist = Math.sqrt(dx * dx + dy * dy);
+                            var maxDist = 180;
+                            if (dist < maxDist) {
+                                var lineAlpha = (1 - dist / maxDist) * 0.3;
+                                ctx.beginPath();
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.strokeStyle = 'rgba(165, 180, 252, ' + lineAlpha + ')';
+                                ctx.lineWidth = 1.5;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+
+                    // 绘制粒子
+                    for (var i = 0; i < particles.length; i++) {
+                        var p = particles[i];
+
+                        // 拖尾
+                        var tdx = p.x - p.px;
+                        var tdy = p.y - p.py;
+                        var trailLen = Math.sqrt(tdx * tdx + tdy * tdy);
+                        if (trailLen > 0.5) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.px, p.py);
+                            ctx.lineTo(p.x, p.y);
+                            ctx.strokeStyle = 'rgba(' + Math.floor(p.r) + ',' + Math.floor(p.g) + ',' + Math.floor(p.b) + ',0.35)';
+                            ctx.lineWidth = p.size * 0.9;
+                            ctx.lineCap = 'round';
+                            ctx.stroke();
+                        }
+
+                        var twinkle = Math.sin(globalTime * p.twinkleSpeed) * 0.2 + 0.8;
+                        var alpha = p.alpha * twinkle;
+
+                        // 外发光（大范围）
+                        var grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 8);
+                        grad.addColorStop(0, 'rgba(' + Math.floor(p.r) + ',' + Math.floor(p.g) + ',' + Math.floor(p.b) + ',' + (alpha * 0.6) + ')');
+                        grad.addColorStop(0.3, 'rgba(' + Math.floor(p.r) + ',' + Math.floor(p.g) + ',' + Math.floor(p.b) + ',' + (alpha * 0.25) + ')');
+                        grad.addColorStop(1, 'rgba(' + Math.floor(p.r) + ',' + Math.floor(p.g) + ',' + Math.floor(p.b) + ',0)');
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size * 8, 0, Math.PI * 2);
+                        ctx.fillStyle = grad;
+                        ctx.fill();
+
+                        // 核心
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(255, 255, 255, ' + alpha + ')';
+                        ctx.fill();
+                    }
+
+                    requestAnimationFrame(draw);
+                }
+
+                draw();
+            })();
+
+            // ==========================================
+            // 0.2 全局背景粒子（Slide 2~10）— 增强版
+            // ==========================================
+            (function initGlobalBgParticles() {
+                var canvas = document.getElementById('bgParticlesCanvas');
+                if (!canvas) return;
+                var ctx = canvas.getContext('2d');
+                var w, h, globalTime = 0;
+                var particles = [];
+                var mouse = { x: -999, y: -999, tx: -999, ty: -999 };
+                var isSlide1Visible = false;
+
+                var COLORS = [
+                    { r: 129, g: 140, b: 248 },
+                    { r: 165, g: 180, b: 252 },
+                    { r: 99,  g: 102, b: 241 },
+                    { r: 255, g: 255, b: 255 },
+                    { r: 167, g: 139, b: 250 },
+                    { r: 56,  g: 189, b: 248 },
+                    { r: 192, g: 132, b: 252 },
+                    { r: 52,  g: 211, b: 153 },
+                ];
+
+                function resize() {
+                    w = window.innerWidth;
+                    h = window.innerHeight;
+                    canvas.width = w;
+                    canvas.height = h;
+                    initParticles();
+                }
+                resize();
+                window.addEventListener('resize', resize);
+
+                // 鼠标跟踪
+                document.addEventListener('mousemove', function(e) {
+                    mouse.tx = e.clientX;
+                    mouse.ty = e.clientY;
+                });
+                document.addEventListener('mouseleave', function() {
+                    mouse.tx = -999;
+                    mouse.ty = -999;
+                });
+                document.addEventListener('touchmove', function(e) {
+                    mouse.tx = e.touches[0].clientX;
+                    mouse.ty = e.touches[0].clientY;
+                }, { passive: true });
+                document.addEventListener('touchend', function() {
+                    mouse.tx = -999;
+                    mouse.ty = -999;
+                });
+
+                // IntersectionObserver 检测 Slide 1
+                var slide1 = document.getElementById('slide-1');
+                if (slide1) {
+                    var observer = new IntersectionObserver(function(entries) {
+                        isSlide1Visible = entries[0].isIntersecting;
+                    }, { threshold: 0.1 });
+                    observer.observe(slide1);
+                }
+
+                function initParticles() {
+                    var count = Math.max(60, Math.floor((w * h) / 8000));
+                    particles = [];
+                    for (var i = 0; i < count; i++) {
+                        var c = COLORS[Math.floor(Math.random() * COLORS.length)];
+                        particles.push({
+                            x: Math.random() * w,
+                            y: Math.random() * h,
+                            baseX: Math.random() * w,
+                            baseY: Math.random() * h,
+                            px: Math.random() * w,
+                            py: Math.random() * h,
+                            r: c.r, g: c.g, b: c.b,
+                            tr: c.r, tg: c.g, tb: c.b,
+                            size: Math.random() * 2.5 + 1.2,
+                            alpha: Math.random() * 0.4 + 0.35,
+                            vx: (Math.random() - 0.5) * 0.25,
+                            vy: (Math.random() - 0.5) * 0.25 - 0.08,
+                            phase: Math.random() * Math.PI * 2,
+                            speed: Math.random() * 0.012 + 0.004,
+                            amplitude: Math.random() * 25 + 8,
+                            twinkleSpeed: Math.random() * 0.025 + 0.008,
+                            colorTimer: Math.random() * 200,
+                            colorInterval: Math.random() * 300 + 200
+                        });
+                    }
+                }
+
+                function lerpColor(p) {
+                    p.r += (p.tr - p.r) * 0.02;
+                    p.g += (p.tg - p.g) * 0.02;
+                    p.b += (p.tb - p.b) * 0.02;
+                    p.colorTimer++;
+                    if (p.colorTimer > p.colorInterval) {
+                        p.colorTimer = 0;
+                        var nc = COLORS[Math.floor(Math.random() * COLORS.length)];
+                        p.tr = nc.r; p.tg = nc.g; p.tb = nc.b;
+                    }
+                }
+
+                function draw() {
+                    if (isSlide1Visible) {
+                        ctx.clearRect(0, 0, w, h);
+                        requestAnimationFrame(draw);
+                        return;
+                    }
+
+                    ctx.clearRect(0, 0, w, h);
+                    globalTime++;
+
+                    // 鼠标平滑跟随
+                    mouse.x += (mouse.tx - mouse.x) * 0.08;
+                    mouse.y += (mouse.ty - mouse.y) * 0.08;
+
+                    // 鼠标光晕
+                    if (mouse.x > -500 && mouse.x < w + 500) {
+                        var mg = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 180);
+                        mg.addColorStop(0, 'rgba(165, 180, 252, 0.08)');
+                        mg.addColorStop(0.4, 'rgba(129, 140, 248, 0.04)');
+                        mg.addColorStop(1, 'rgba(99, 102, 241, 0)');
+                        ctx.beginPath();
+                        ctx.arc(mouse.x, mouse.y, 180, 0, Math.PI * 2);
+                        ctx.fillStyle = mg;
+                        ctx.fill();
+                    }
+
+                    // 更新粒子位置
+                    for (var i = 0; i < particles.length; i++) {
+                        var p = particles[i];
+                        p.px = p.x;
+                        p.py = p.y;
+
+                        p.phase += p.speed;
+                        p.x = p.baseX + Math.sin(p.phase) * p.amplitude + p.vx * 60;
+                        p.y = p.baseY + Math.cos(p.phase * 0.7) * p.amplitude * 0.6 + p.vy * 60;
+
+                        if (p.x < -30) p.x = w + 30;
+                        if (p.x > w + 30) p.x = -30;
+                        if (p.y < -30) p.y = h + 30;
+                        if (p.y > h + 30) p.y = -30;
+
+                        // 鼠标排斥
+                        var dx = p.x - mouse.x;
+                        var dy = p.y - mouse.y;
+                        var dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 120) {
+                            var force = (1 - dist / 120) * 1.8;
+                            p.x += (dx / dist) * force;
+                            p.y += (dy / dist) * force;
+                        }
+
+                        lerpColor(p);
+                    }
+
+                    // 星座网络连线
+                    for (var i = 0; i < particles.length; i++) {
+                        for (var j = i + 1; j < particles.length; j++) {
+                            var dx = particles[i].x - particles[j].x;
+                            var dy = particles[i].y - particles[j].y;
+                            var dist = Math.sqrt(dx * dx + dy * dy);
+                            var maxDist = 130;
+                            if (dist < maxDist) {
+                                var lineAlpha = (1 - dist / maxDist) * 0.1;
+                                ctx.beginPath();
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.strokeStyle = 'rgba(165, 180, 252, ' + lineAlpha + ')';
+                                ctx.lineWidth = 0.5;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+
+                    // 绘制粒子
+                    for (var i = 0; i < particles.length; i++) {
+                        var p = particles[i];
+
+                        // 拖尾
+                        var tdx = p.x - p.px;
+                        var tdy = p.y - p.py;
+                        var trailLen = Math.sqrt(tdx * tdx + tdy * tdy);
+                        if (trailLen > 0.5) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.px, p.py);
+                            ctx.lineTo(p.x, p.y);
+                            ctx.strokeStyle = 'rgba(' + Math.floor(p.r) + ',' + Math.floor(p.g) + ',' + Math.floor(p.b) + ',0.15)';
+                            ctx.lineWidth = p.size * 0.8;
+                            ctx.lineCap = 'round';
+                            ctx.stroke();
+                        }
+
+                        var twinkle = Math.sin(globalTime * p.twinkleSpeed) * 0.2 + 0.8;
+                        var alpha = p.alpha * twinkle;
+
+                        // 外发光 5x
+                        var grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 5);
+                        grad.addColorStop(0, 'rgba(' + Math.floor(p.r) + ',' + Math.floor(p.g) + ',' + Math.floor(p.b) + ',' + (alpha * 0.45) + ')');
+                        grad.addColorStop(0.5, 'rgba(' + Math.floor(p.r) + ',' + Math.floor(p.g) + ',' + Math.floor(p.b) + ',' + (alpha * 0.15) + ')');
+                        grad.addColorStop(1, 'rgba(' + Math.floor(p.r) + ',' + Math.floor(p.g) + ',' + Math.floor(p.b) + ',0)');
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size * 5, 0, Math.PI * 2);
+                        ctx.fillStyle = grad;
+                        ctx.fill();
+
+                        // 核心
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(255, 255, 255, ' + alpha + ')';
+                        ctx.fill();
+                    }
+
+                    requestAnimationFrame(draw);
+                }
+
+                draw();
+            })();
+
+            // 窗口大小变化时重新检测
+            let resizeDebounce;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeDebounce);
+                resizeDebounce = setTimeout(function() {
+                    if (window.innerWidth <= 820) {
+                        document.body.classList.add('is-mobile');
+                    } else if (!isTouchDevice) {
+                        document.body.classList.remove('is-mobile');
+                    }
+                }, 250);
+            });
+
+            // 底部导航点击处理
+            const bottomNavItems = document.querySelectorAll('.bottom-nav .bn-item');
+            bottomNavItems.forEach(function(item) {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('data-target');
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        const offset = 70;
+                        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                        window.scrollTo({ top: top, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // ==========================================
+            // 1. 导航切换（移动端）
+            // ==========================================
+            const navToggle = document.getElementById('navToggle');
+            const navLinks = document.getElementById('navLinks');
+            if (navToggle && navLinks) {
+                navToggle.addEventListener('click', function() {
+                    const open = navLinks.classList.toggle('open');
+                    navToggle.classList.toggle('active');
+                    navToggle.setAttribute('aria-expanded', open);
+                });
+                navLinks.querySelectorAll('a').forEach(function(a) {
+                    a.addEventListener('click', function() {
+                        navLinks.classList.remove('open');
+                        navToggle.classList.remove('active');
+                        navToggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            }
+
+            // ==========================================
+            // 2. 返回顶部
+            // ==========================================
+            const backTop = document.getElementById('backTop');
+            if (backTop) {
+                let ticking = false;
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        window.requestAnimationFrame(function() {
+                            const show = window.scrollY > 400;
+                            backTop.classList.toggle('visible', show);
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+                backTop.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // ==========================================
+            // 3. 平滑锚点跳转
+            // ==========================================
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        const offset = 70;
+                        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                        window.scrollTo({ top: top, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // ==========================================
+            // 4. 导航高亮 + 幻灯片渐入（滚动监听）
+            // ==========================================
+            const slides = document.querySelectorAll('.slide');
+            const navAnchors = document.querySelectorAll('.nav-links a');
+
+            function updateActiveNav() {
+                let currentId = null;
+                let minDistance = Infinity;
+
+                slides.forEach(slide => {
+                    const rect = slide.getBoundingClientRect();
+                    const slideCenter = rect.top + rect.height * 0.4;
+                    const viewportCenter = window.innerHeight * 0.4;
+                    const distance = Math.abs(slideCenter - viewportCenter);
+
+                    // 只考虑在视口上方或附近的 slide
+                    if (rect.top < window.innerHeight * 0.7 && distance < minDistance) {
+                        minDistance = distance;
+                        currentId = slide.id;
+                    }
+
+                    // 添加 visible 类（触发渐入动画）
+                    if (rect.top < window.innerHeight * 0.85) {
+                        slide.classList.add('visible');
+                    }
+                });
+
+                if (currentId) {
+                    navAnchors.forEach(link => {
+                        const isActive = link.getAttribute('href') === '#' + currentId;
+                        link.classList.toggle('active', isActive);
+                    });
+                    // 同步底部导航高亮
+                    bottomNavItems.forEach(function(item) {
+                        const isActive = item.getAttribute('data-target') === currentId;
+                        item.classList.toggle('active', isActive);
+                    });
+                }
+            }
+
+            let navScrollTicking = false;
+            window.addEventListener('scroll', function() {
+                if (!navScrollTicking) {
+                    window.requestAnimationFrame(function() {
+                        updateActiveNav();
+                        navScrollTicking = false;
+                    });
+                    navScrollTicking = true;
+                }
+            });
+
+            // 初始调用
+            window.addEventListener('load', function() {
+                updateActiveNav();
+            });
+            updateActiveNav();
+
+            // ==========================================
+            // 5. 背景图懒加载
+            // ==========================================
+            const lazySlides = document.querySelectorAll('[data-bg]');
+            const bgObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const bg = el.dataset.bg;
+                        if (bg) {
+                            el.style.backgroundImage = `url('${bg}')`;
+                            el.removeAttribute('data-bg');
+                        }
+                        bgObserver.unobserve(el);
+                    }
+                });
+            }, { rootMargin: '200px' });
+
+            lazySlides.forEach(slide => bgObserver.observe(slide));
+
+            // 封面立即加载（已在HTML中直接使用data-bg，但为了立即显示，手动加载）
+            const cover = document.querySelector('.slide-cover');
+            if (cover && cover.dataset.bg) {
+                cover.style.backgroundImage = `url('${cover.dataset.bg}')`;
+                cover.removeAttribute('data-bg');
+            }
+
+            // ==========================================
+            // 6. 统计数字滚动动画
+            // ==========================================
+            const statNumbers = document.querySelectorAll('.stat-number');
+            let animated = false;
+
+            function animateNumbers() {
+                if (animated) return;
+                const stats = document.querySelector('#statGrid');
+                if (!stats) return;
+                const rect = stats.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    animated = true;
+                    statNumbers.forEach(el => {
+                        const target = parseFloat(el.dataset.target);
+                        if (isNaN(target)) return;
+                        const suffix = el.textContent.replace(/[0-9.]/g, '');
+                        const duration = 1800;
+                        const startTime = performance.now();
+
+                        function update(currentTime) {
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            // easeOutQuart
+                            const eased = 1 - Math.pow(1 - progress, 4);
+                            const current = eased * target;
+                            if (target % 1 === 0) {
+                                el.textContent = Math.round(current) + suffix;
+                            } else {
+                                el.textContent = current.toFixed(1) + suffix;
+                            }
+                            if (progress < 1) {
+                                requestAnimationFrame(update);
+                            } else {
+                                el.textContent = target + suffix;
+                            }
+                        }
+                        requestAnimationFrame(update);
+                    });
+                }
+            }
+
+            window.addEventListener('scroll', animateNumbers);
+            window.addEventListener('load', function() {
+                setTimeout(animateNumbers, 300);
+            });
+
+            // ==========================================
+            // 7. 证书图片轮播（间隔 1.5 秒）
+            // ==========================================
+            (function initCarousel() {
+                const track = document.getElementById('certTrack');
+                const dotsContainer = document.getElementById('certDots');
+                const prevBtn = document.getElementById('certPrev');
+                const nextBtn = document.getElementById('certNext');
+                if (!track || !dotsContainer) return;
+
+                const slides = track.querySelectorAll('.carousel-slide');
+                const total = slides.length;
+                let currentIndex = 0;
+                let intervalId = null;
+                const intervalTime = 1500;
+
+                // 创建指示点
+                for (let i = 0; i < total; i++) {
+                    const dot = document.createElement('button');
+                    dot.classList.add('dot');
+                    if (i === 0) dot.classList.add('active');
+                    dot.dataset.index = i;
+                    dot.addEventListener('click', function() {
+                        goTo(parseInt(this.dataset.index));
+                    });
+                    dotsContainer.appendChild(dot);
+                }
+
+                const dots = dotsContainer.querySelectorAll('.dot');
+
+                function goTo(index) {
+                    if (index < 0) index = total - 1;
+                    if (index >= total) index = 0;
+                    currentIndex = index;
+                    track.style.transform = 'translateX(' + (-index * 100) + '%)';
+                    dots.forEach(function(dot, i) {
+                        dot.classList.toggle('active', i === index);
+                    });
+                }
+
+                function next() {
+                    goTo(currentIndex + 1);
+                }
+
+                function prev() {
+                    goTo(currentIndex - 1);
+                }
+
+                function startAutoPlay() {
+                    if (intervalId) clearInterval(intervalId);
+                    intervalId = setInterval(next, intervalTime);
+                }
+
+                function stopAutoPlay() {
+                    if (intervalId) {
+                        clearInterval(intervalId);
+                        intervalId = null;
+                    }
+                }
+
+                if (prevBtn) prevBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    prev();
+                    stopAutoPlay();
+                    startAutoPlay();
+                });
+                if (nextBtn) nextBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    next();
+                    stopAutoPlay();
+                    startAutoPlay();
+                });
+
+                const container = document.getElementById('certCarousel');
+                if (container) {
+                    container.addEventListener('mouseenter', stopAutoPlay);
+                    container.addEventListener('mouseleave', startAutoPlay);
+
+                    // 触摸滑动支持
+                    let touchStartX = 0;
+                    let touchStartY = 0;
+
+                    container.addEventListener('touchstart', function(e) {
+                        stopAutoPlay();
+                        touchStartX = e.touches[0].clientX;
+                        touchStartY = e.touches[0].clientY;
+                    }, { passive: true });
+
+                    container.addEventListener('touchend', function(e) {
+                        const touchEndX = e.changedTouches[0].clientX;
+                        const touchEndY = e.changedTouches[0].clientY;
+                        const diffX = touchStartX - touchEndX;
+                        const diffY = touchStartY - touchEndY;
+
+                        // 水平滑动距离 > 40px 且大于垂直滑动
+                        if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+                            if (diffX > 0) {
+                                next();
+                            } else {
+                                prev();
+                            }
+                        }
+                        startAutoPlay();
+                    });
+                }
+
+                startAutoPlay();
+
+                // 图片加载失败 fallback
+                slides.forEach(function(slide) {
+                    const img = slide.querySelector('img');
+                    if (img) {
+                        img.addEventListener('error', function() {
+                            const alt = img.alt || '证书图片';
+                            const fallback = document.createElement('div');
+                            fallback.className = 'carousel-fallback';
+                            fallback.innerHTML = '<span class="fallback-icon">📄</span><span class="fallback-text">' + alt + '</span>';
+                            slide.replaceChild(fallback, img);
+                        });
+                    }
+                });
+
+                // 窗口尺寸变化时重置
+                let resizeTimer;
+                window.addEventListener('resize', function() {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(function() {}, 200);
+                });
+            })();
+
+            // ==========================================
+            // 8. 背景音乐控制
+            // ==========================================
+            (function initMusic() {
+                const audio = document.getElementById('bgMusic');
+                const toggleBtn = document.getElementById('musicToggle');
+                const iconSpan = document.getElementById('musicIcon');
+                if (!audio || !toggleBtn) return;
+
+                let isPlaying = false;
+
+                function updateIcon() {
+                    if (isPlaying) {
+                        iconSpan.textContent = '🔊';
+                        toggleBtn.classList.add('playing');
+                    } else {
+                        iconSpan.textContent = '🔇';
+                        toggleBtn.classList.remove('playing');
+                    }
+                }
+
+                function tryPlay() {
+                    audio.play().then(() => {
+                        isPlaying = true;
+                        updateIcon();
+                        console.log('🎵 背景音乐已播放');
+                    }).catch(() => {
+                        isPlaying = false;
+                        updateIcon();
+                        console.log('⏸️ 自动播放被阻止，等待用户交互');
+                        const resumePlay = function() {
+                            audio.play().then(() => {
+                                isPlaying = true;
+                                updateIcon();
+                            }).catch(() => {});
+                            document.removeEventListener('click', resumePlay);
+                            document.removeEventListener('touchstart', resumePlay);
+                            document.removeEventListener('keydown', resumePlay);
+                        };
+                        document.addEventListener('click', resumePlay);
+                        document.addEventListener('touchstart', resumePlay);
+                        document.addEventListener('keydown', resumePlay);
+                    });
+                }
+
+                toggleBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (isPlaying) {
+                        audio.pause();
+                        isPlaying = false;
+                        updateIcon();
+                    } else {
+                        audio.play().then(() => {
+                            isPlaying = true;
+                            updateIcon();
+                        }).catch(() => {});
+                    }
+                });
+
+                if (audio.readyState >= 2) {
+                    tryPlay();
+                } else {
+                    audio.addEventListener('loadeddata', tryPlay);
+                }
+
+                audio.loop = true;
+
+                audio.addEventListener('pause', function() {
+                    if (!audio.ended) {
+                        isPlaying = false;
+                        updateIcon();
+                    }
+                });
+                audio.addEventListener('play', function() {
+                    isPlaying = true;
+                    updateIcon();
+                });
+            })();
+
+            // ==========================================
+            // 9. PDF导出按钮
+            // ==========================================
+            const printBtn = document.getElementById('printBtn');
+            if (printBtn) {
+                printBtn.addEventListener('click', function() {
+                    window.print();
+                });
+            }
+
+            console.log('✅ 新青年·智造 — 陈文栋 · 新生见面会 完整版已加载（含元旦晚会）');
+        })();
+    </script>
+</body>
+</html>
